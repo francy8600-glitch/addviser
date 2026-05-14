@@ -1,0 +1,617 @@
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0a;--bg2:#111111;--bg3:#1a1a1a;--bg4:#222222;
+  --border:#2a2a2a;--border2:#333333;
+  --text:#f0f0f0;--text2:#999;--text3:#666;
+  --green:#22c55e;--green2:#16a34a;--green-dim:#052e16;
+  --red:#ef4444;--red-dim:#2d0a0a;
+  --blue:#60a5fa;--blue-dim:#1e3a5f;
+  --amber:#f59e0b;--amber-dim:#2d1a00;
+  --purple:#a78bfa;--purple-dim:#1e1040;
+}
+body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;font-size:13px}
+.nav{display:flex;gap:1px;background:var(--border);border-radius:10px;padding:3px;margin-bottom:1.25rem}
+.nb{flex:1;padding:7px 6px;cursor:pointer;font-size:11px;border:none;border-radius:7px;color:var(--text2);background:transparent;display:flex;align-items:center;justify-content:center;gap:4px;transition:all .15s}
+.nb.active{color:var(--text);background:var(--bg3);font-weight:500}
+.nb:hover:not(.active){color:var(--text);background:var(--bg4)}
+.sec{display:none}.sec.active{display:block}
+.mg{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-bottom:1rem}
+.mc{background:var(--bg2);border:0.5px solid var(--border);border-radius:10px;padding:12px}
+.ml{font-size:10px;color:var(--text3);margin-bottom:3px;text-transform:uppercase;letter-spacing:.04em}
+.mv{font-size:20px;font-weight:500}
+.mv-s{font-size:10px;color:var(--text3);margin-top:2px}
+.card{background:var(--bg2);border:0.5px solid var(--border);border-radius:10px;margin-bottom:.75rem;overflow:hidden}
+.ch{padding:10px 14px;border-bottom:0.5px solid var(--border);font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:space-between;color:var(--text2)}
+.ch span{display:flex;align-items:center;gap:6px;color:var(--text)}
+.cb{padding:12px 14px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem}
+.badge{display:inline-block;padding:2px 7px;border-radius:20px;font-size:10px;font-weight:500}
+.row{display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:0.5px solid var(--border);font-size:11px;gap:8px}
+.row:last-child{border-bottom:none}
+.bar-bg{background:var(--bg4);border-radius:4px;height:4px;flex:1;overflow:hidden}
+.bar-f{height:100%;border-radius:4px}
+table{width:100%;border-collapse:collapse;font-size:11px}
+th{text-align:left;padding:7px 10px;font-size:10px;color:var(--text3);border-bottom:0.5px solid var(--border);background:var(--bg3);text-transform:uppercase;letter-spacing:.04em}
+td{padding:7px 10px;border-bottom:0.5px solid var(--border);color:var(--text)}
+tr:last-child td{border-bottom:none}
+tr.hr:hover{background:var(--bg3);cursor:pointer}
+select,input{font-size:12px;padding:6px 10px;border:0.5px solid var(--border2);border-radius:8px;background:var(--bg3);color:var(--text);width:100%;outline:none}
+select:focus,input:focus{border-color:var(--blue)}
+.btn{font-size:11px;padding:6px 12px;border:0.5px solid var(--border2);border-radius:8px;background:var(--bg3);color:var(--text);cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:all .15s}
+.btn:hover{background:var(--bg4);border-color:var(--border2)}
+.btn-p{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
+.btn-p:hover{background:#1e40af;border-color:#1e40af}
+.btn-d{color:var(--red);border-color:#4d1515}
+.btn-d:hover{background:var(--red-dim)}
+.ms-step{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--border)}
+.ms-step:last-child{border-bottom:none}
+.ms-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.overlay{display:none;min-height:500px;background:rgba(0,0,0,.75);border-radius:10px;align-items:flex-start;justify-content:center;padding:1.5rem 1rem}
+.overlay.open{display:flex}
+.modal{background:var(--bg2);border-radius:12px;border:0.5px solid var(--border2);padding:1.25rem;width:100%;max-width:480px}
+.modal h3{font-size:14px;font-weight:500;margin-bottom:1rem;color:var(--text)}
+.fg{display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
+.fg label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.04em}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fb{display:flex;justify-content:flex-end;gap:8px;margin-top:12px;padding-top:12px;border-top:0.5px solid var(--border)}
+.pill-e{background:#052e16;color:#4ade80;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:500}
+.pill-u{background:#2d0a0a;color:#f87171;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:500}
+</style>
+
+<div style="background:var(--bg);padding:1rem;border-radius:12px;min-height:600px">
+
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
+  <div>
+    <div style="font-size:16px;font-weight:500;color:var(--text);letter-spacing:-.02em">Addviser <span style="color:var(--text3);font-weight:400">gestionale</span></div>
+    <div style="font-size:10px;color:var(--text3);margin-top:2px">Pratiche · WIP · Prima nota · Ammortamenti</div>
+  </div>
+  <div style="display:flex;gap:8px;align-items:center">
+    <select id="anno-sel" onchange="refresh()" style="width:80px"><option>2025</option><option selected>2026</option></select>
+  </div>
+</div>
+
+<div class="nav">
+  <button class="nb active" onclick="go('dash')"><i class="ti ti-layout-dashboard" aria-hidden="true"></i>Dashboard</button>
+  <button class="nb" onclick="go('pratiche')"><i class="ti ti-briefcase" aria-hidden="true"></i>Pratiche</button>
+  <button class="nb" onclick="go('wip')"><i class="ti ti-chart-bar" aria-hidden="true"></i>WIP</button>
+  <button class="nb" onclick="go('pn')"><i class="ti ti-receipt" aria-hidden="true"></i>Prima nota</button>
+  <button class="nb" onclick="go('amm')"><i class="ti ti-building-bank" aria-hidden="true"></i>Ammortamenti</button>
+</div>
+
+<div id="tab-dash" class="sec active">
+  <div class="mg" id="dash-kpi"></div>
+  <div class="g2">
+    <div class="card">
+      <div class="ch"><span><i class="ti ti-calendar-stats" aria-hidden="true"></i>Incassi vs uscite</span></div>
+      <div style="padding:12px;position:relative;height:160px"><canvas id="c-mensile" role="img" aria-label="Incassi e uscite mensili 2026">Gen 190K/126K Feb 56K/148K Mar 137K/158K Apr 111K/136K Mag 5K/14K</canvas></div>
+    </div>
+    <div class="card">
+      <div class="ch"><span><i class="ti ti-chart-donut" aria-hidden="true"></i>Uscite per categoria</span></div>
+      <div class="cb" id="dash-cats" style="padding:8px 14px"></div>
+    </div>
+  </div>
+  <div class="g2">
+    <div class="card">
+      <div class="ch"><span><i class="ti ti-users" aria-hidden="true"></i>Top clienti 2026</span></div>
+      <div class="cb" id="dash-clienti" style="padding:8px 14px"></div>
+    </div>
+    <div class="card">
+      <div class="ch"><span><i class="ti ti-alert-triangle" aria-hidden="true"></i>Segnalazioni</span></div>
+      <div class="cb">
+        <div style="padding:8px 0;border-bottom:0.5px solid var(--border)"><div style="font-size:11px;font-weight:500;color:var(--amber);margin-bottom:3px">Saldo negativo gen–mag</div><div style="font-size:10px;color:var(--text3)">Uscite superano incassi di €83K. Feb peggiore (−€92K).</div></div>
+        <div style="padding:8px 0;border-bottom:0.5px solid var(--border)"><div style="font-size:11px;font-weight:500;color:var(--amber);margin-bottom:3px">Simest Santarosa bloccata</div><div style="font-size:10px;color:var(--text3)">€51K presentata ad aprile. Nessun ricavo ancora.</div></div>
+        <div style="padding:8px 0"><div style="font-size:11px;font-weight:500;color:var(--amber);margin-bottom:3px">Patent Box Infogestweb</div><div style="font-size:10px;color:var(--text3)">€150K a mandato firmato (1%). Da accelerare.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="tab-pratiche" class="sec">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
+    <div style="display:flex;gap:8px;align-items:center">
+      <select id="fil-stato" onchange="renderPratiche()" style="width:140px">
+        <option value="">Tutti gli stati</option>
+        <option value="aperte">Solo aperte</option>
+        <option value="fatturate">Solo fatturate</option>
+      </select>
+      <select id="fil-tipo" onchange="renderPratiche()" style="width:150px">
+        <option value="">Tutti i bandi</option>
+        <option>Simest</option><option>Iperammortamento</option><option>Formazione 4.0</option>
+        <option>Patent Box esterno</option><option>Patent Box interno</option><option>Patent Box interno c/RS</option><option>RSID</option><option>Cert Prev</option><option>R&S</option><option>Trans 5.0</option><option>Bando Inail</option>
+      </select>
+    </div>
+    <button class="btn btn-p" onclick="openPraticaModal()"><i class="ti ti-plus" aria-hidden="true"></i>Nuova</button>
+  </div>
+  <div class="card" style="padding:0;overflow-x:auto">
+    <table><thead><tr><th style="width:40px">ID</th><th>Cliente</th><th>Bando</th><th>Valore</th><th>Milestone / Stato</th><th>WIP</th><th style="width:80px">Avanz.</th><th style="width:60px"></th></tr></thead>
+    <tbody id="pratiche-body"></tbody></table>
+  </div>
+</div>
+
+<div id="tab-wip" class="sec">
+  <div style="font-size:13px;font-weight:500;margin-bottom:1rem;color:var(--text)">Ricavi per competenza mensile</div>
+  <div class="card" style="padding:0;overflow-x:auto">
+    <table style="min-width:700px"><thead id="wip-head"></thead><tbody id="wip-body"></tbody></table>
+  </div>
+</div>
+
+<div id="tab-pn" class="sec">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
+    <span style="font-size:13px;font-weight:500">Prima nota 2026</span>
+    <button class="btn btn-p" onclick="openPNModal()"><i class="ti ti-plus" aria-hidden="true"></i>Registra</button>
+  </div>
+  <div class="mg" id="pn-kpi"></div>
+  <div class="card" style="padding:0;overflow-x:auto">
+    <div class="ch"><span>Movimenti — ordinati per data (più recenti prima)</span></div>
+    <table><thead><tr><th>Data</th><th>Controparte</th><th>Descrizione</th><th>Categoria</th><th style="text-align:right">Importo</th></tr></thead>
+    <tbody id="pn-body"></tbody></table>
+  </div>
+</div>
+
+<div id="tab-amm" class="sec">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
+    <span style="font-size:13px;font-weight:500">Ammortamenti — dati reali 31/12/2025</span>
+    <button class="btn btn-p" onclick="openAmmModal()"><i class="ti ti-plus" aria-hidden="true"></i>Aggiungi</button>
+  </div>
+  <div class="mg" id="amm-kpi"></div>
+  <div class="card" style="padding:0;overflow-x:auto">
+    <table><thead><tr><th>Cespite</th><th>Categoria</th><th style="text-align:right">Quota amm. 2025</th></tr></thead>
+    <tbody id="amm-body"></tbody></table>
+  </div>
+  <div class="card" style="margin-top:.75rem">
+    <div class="ch"><span>Totali per categoria</span></div>
+    <div class="cb" id="amm-bars" style="padding:8px 14px"></div>
+  </div>
+</div>
+
+</div>
+
+<!-- MODALI -->
+<div class="overlay" id="m-pratica">
+<div class="modal">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
+    <h3 id="mp-title">Nuova pratica</h3>
+    <button class="btn" onclick="closeM('m-pratica')" style="padding:4px 8px"><i class="ti ti-x" aria-hidden="true"></i></button>
+  </div>
+  <div class="fg2">
+    <div class="fg"><label>ID</label><input id="mp-id" type="number" placeholder="108"></div>
+    <div class="fg"><label>Data mandato</label><input id="mp-data" type="date"></div>
+  </div>
+  <div class="fg"><label>Cliente</label><input id="mp-cli" placeholder="Nome azienda cliente"></div>
+  <div class="fg2">
+    <div class="fg"><label>Tipo bando</label>
+      <select id="mp-tipo" onchange="aggMs()">
+        <option>Simest</option><option>Iperammortamento</option><option>Formazione 4.0</option>
+        <option>Patent Box esterno</option><option>Patent Box interno</option><option>Patent Box interno c/RS</option><option>RSID</option><option>Cert Prev</option><option>R&S</option><option>Trans 5.0</option><option>Bando Inail</option>
+      </select>
+    </div>
+    <div class="fg"><label>Valore (€)</label><input id="mp-val" type="number" placeholder="50000"></div>
+  </div>
+  <div class="fg"><label>Milestone attuale</label><select id="mp-ms" onchange="renderMsPrev()"></select></div>
+  <div id="ms-prev" style="margin-bottom:10px;background:var(--bg3);border-radius:8px;padding:10px 12px;border:0.5px solid var(--border)"></div>
+  <div class="fb">
+    <button class="btn btn-d" id="mp-del" onclick="delPratica()" style="margin-right:auto;display:none"><i class="ti ti-trash" aria-hidden="true"></i>Elimina</button>
+    <button class="btn" onclick="closeM('m-pratica')">Annulla</button>
+    <button class="btn btn-p" onclick="salvaPratica()">Salva</button>
+  </div>
+</div>
+</div>
+
+<div class="overlay" id="m-pn">
+<div class="modal">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
+    <h3>Registra movimento</h3>
+    <button class="btn" onclick="closeM('m-pn')" style="padding:4px 8px"><i class="ti ti-x" aria-hidden="true"></i></button>
+  </div>
+  <div class="fg2">
+    <div class="fg"><label>Data</label><input id="pn-data" type="date"></div>
+    <div class="fg"><label>Tipo</label><select id="pn-tipo"><option value="entrata">Entrata</option><option value="uscita">Uscita</option></select></div>
+  </div>
+  <div class="fg"><label>Controparte</label><input id="pn-ctrl" placeholder="Cliente / Fornitore"></div>
+  <div class="fg"><label>Descrizione</label><input id="pn-desc" placeholder="es. Onorario pratica Patent Box"></div>
+  <div class="fg2">
+    <div class="fg"><label>Categoria</label>
+      <select id="pn-cat">
+        <option>Onorario cliente</option><option>Fornitori/Professionisti</option><option>Personale</option>
+        <option>Tasse/Contributi</option><option>Canoni/Affitti</option><option>Rate finanziamenti</option>
+        <option>Consulenze esterne</option><option>Software/Utilities</option><option>Auto/Carburante</option><option>Altro</option>
+      </select>
+    </div>
+    <div class="fg"><label>Importo (€)</label><input id="pn-imp" type="number" placeholder="1000"></div>
+  </div>
+  <div class="fb">
+    <button class="btn" onclick="closeM('m-pn')">Annulla</button>
+    <button class="btn btn-p" onclick="savePN()">Registra</button>
+  </div>
+</div>
+</div>
+
+<div class="overlay" id="m-amm">
+<div class="modal">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
+    <h3>Aggiungi cespite</h3>
+    <button class="btn" onclick="closeM('m-amm')" style="padding:4px 8px"><i class="ti ti-x" aria-hidden="true"></i></button>
+  </div>
+  <div class="fg"><label>Descrizione</label><input id="amm-d" placeholder="es. MacBook Pro M4"></div>
+  <div class="fg2">
+    <div class="fg"><label>Quota annua (€)</label><input id="amm-v" type="number" placeholder="500"></div>
+    <div class="fg"><label>Anno acquisto</label><input id="amm-a" type="number" placeholder="2025"></div>
+  </div>
+  <div class="fg"><label>Categoria</label>
+    <select id="amm-c"><option>Elaboratori</option><option>Mobili e arredi</option><option>Macchine elettroniche</option><option>Radiomobile</option><option>Software</option><option>Spese su beni terzi</option><option>Altro</option></select>
+  </div>
+  <div class="fb">
+    <button class="btn" onclick="closeM('m-amm')">Annulla</button>
+    <button class="btn btn-p" onclick="saveAmm()">Aggiungi</button>
+  </div>
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const MESI=['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic'];
+
+const PIPELINE={
+  'Simest':[{n:'Mandato firmato',p:.01},{n:'Documentazione raccolta',p:.25},{n:'Domanda caricata su portale Simest',p:.50},{n:'Istruttoria superata / Delibera positiva',p:.75},{n:'Contratto finanziamento firmato',p:1},{n:'Fatturata',p:1}],
+  'Iperammortamento':[{n:'Mandato firmato',p:.01},{n:'Analisi investimenti cliente',p:.25},{n:'Perizia tecnica / Relazione asseverata',p:.30},{n:'Comunicazione ex ante',p:.70},{n:'Comunicazione acconti',p:.70},{n:'Comunicazione ex post',p:1},{n:'Fatturata',p:1}],
+  'Formazione 4.0':[{n:'Mandato firmato',p:.01},{n:'Raccolta documentazione',p:.20},{n:'Calcolo credito',p:.90},{n:'Presentazione cliente',p:1},{n:'Fatturata',p:1}],
+  'Patent Box esterno':[{n:'Mandato firmato',p:.01},{n:'Raccolta documentazione',p:.10},{n:'Mappatura IP',p:.50},{n:'Analisi nexus e calcolo beneficio',p:.90},{n:'Presentazione cliente',p:1},{n:'Fatturata',p:1}],
+  'Patent Box interno':[{n:'Mandato firmato',p:.01},{n:'Raccolta documentazione',p:.30},{n:'Analisi nexus e calcolo beneficio',p:.90},{n:'Presentata cliente',p:1},{n:'Fatturata',p:1}],
+  'Patent Box interno c/RS':[{n:'Mandato firmato',p:.01},{n:'Analisi nexus e calcolo beneficio',p:.90},{n:'Presentata cliente',p:1},{n:'Fatturata',p:1}],
+  'RSID':[{n:'Mandato firmato',p:.01},{n:'Raccolta documentazione',p:.30},{n:'Calcolo beneficio',p:.90},{n:'Presentata cliente',p:1},{n:'Fatturata',p:1}],
+  'Cert Prev':[{n:'Mandato firmato',p:.01},{n:'Raccolta documentazione',p:.30},{n:'Relazione tecnica',p:.70},{n:'Presentata',p:.90},{n:'Fatturata',p:1}],
+  'R&S':[{n:'Mandato firmato',p:.01},{n:'Raccolta dati',p:.30},{n:'Calcolo beneficio',p:.80},{n:'Fatturata',p:1}],
+  'Trans 5.0':[{n:'Mandato firmato',p:.01},{n:'Raccolta documentazione',p:.30},{n:'Domanda presentata',p:.70},{n:'Approvata',p:.90},{n:'Fatturata',p:1}],
+  'Bando Inail':[{n:'Mandato firmato',p:.01},{n:'Dati ricevuti e validi',p:.40},{n:'Domanda presentata',p:.80},{n:'Fatturata',p:1}],
+};
+
+const TBADGE={
+  'Simest':'background:#1e3a5f;color:#60a5fa',
+  'Iperammortamento':'background:#1e1040;color:#a78bfa',
+  'Formazione 4.0':'background:#2d1a00;color:#f59e0b',
+  'Patent Box esterno':'background:#052e16;color:#4ade80',
+  'Patent Box interno':'background:#052e16;color:#86efac',
+  'Patent Box interno c/RS':'background:#052e16;color:#bbf7d0',
+  'RSID':'background:#2d0a0a;color:#f87171',
+  'Cert Prev':'background:#1a1a2e;color:#818cf8',
+  'R&S':'background:#1a2e1a;color:#6ee7b7',
+  'Trans 5.0':'background:#2a1a00;color:#fcd34d',
+  'Bando Inail':'background:#1a0a2e;color:#c4b5fd',
+};
+const TCOL={'Simest':'#60a5fa','Iperammortamento':'#a78bfa','Formazione 4.0':'#f59e0b','Patent Box esterno':'#4ade80','Patent Box interno':'#4ade80','Patent Box interno c/RS':'#86efac','RSID':'#f87171','Cert Prev':'#818cf8','R&S':'#6ee7b7','Trans 5.0':'#fcd34d','Bando Inail':'#c4b5fd'};
+
+let pratiche=[
+  {id:56,data:'2025-10-01',cli:'SANTAROSA (GF)',tipo:'Simest',val:51000,ms:'Istruttoria superata / Delibera positiva',fatturata:false,log:[{d:'2025-10-01',ms:'Mandato firmato'},{d:'2026-04-02',ms:'Istruttoria superata / Delibera positiva'}]},
+  {id:87,data:'2026-01-01',cli:'ZIGOTTO (Lugoboni)',tipo:'Formazione 4.0',val:24000,ms:'Raccolta documentazione',fatturata:false,log:[{d:'2026-01-01',ms:'Mandato firmato'},{d:'2026-02-01',ms:'Raccolta documentazione'}]},
+  {id:97,data:'2026-02-01',cli:'NOVA FRIGO (Lugoboni)',tipo:'Patent Box interno',val:100000,ms:'Analisi nexus e calcolo beneficio',fatturata:false,log:[{d:'2026-02-01',ms:'Mandato firmato'},{d:'2026-04-01',ms:'Analisi nexus e calcolo beneficio'}]},
+  {id:98,data:'2026-02-01',cli:'IPKARTING (Leone)',tipo:'RSID',val:3900,ms:'Presentata cliente',fatturata:false,log:[{d:'2026-02-01',ms:'Mandato firmato'},{d:'2026-04-01',ms:'Presentata cliente'}]},
+  {id:99,data:'2026-02-01',cli:'IPKARTING (Leone)',tipo:'Bando Inail',val:19500,ms:'Dati ricevuti e validi',fatturata:false,log:[{d:'2026-02-01',ms:'Mandato firmato'},{d:'2026-03-01',ms:'Dati ricevuti e validi'}]},
+  {id:102,data:'2026-02-01',cli:'INFOGESTWEB (Lugoboni)',tipo:'Patent Box interno',val:150000,ms:'Mandato firmato',fatturata:false,log:[{d:'2026-02-01',ms:'Mandato firmato'}]},
+  {id:104,data:'2026-02-01',cli:'QSD SISTEMI (Leone)',tipo:'RSID',val:8200,ms:'Raccolta documentazione',fatturata:false,log:[{d:'2026-02-01',ms:'Mandato firmato'},{d:'2026-03-01',ms:'Raccolta documentazione'}]},
+  {id:57,data:'2025-10-01',cli:'SANTAROSA (GF)',tipo:'Cert Prev',val:25000,ricavo:25000,ms:'Fatturata',fatturata:true,log:[{d:'2026-03-01',ms:'Fatturata'}]},
+  {id:64,data:'2025-11-01',cli:"CINECITTA' WORLD SPA (GF)",tipo:'R&S',val:107095,ricavo:89246,ms:'Fatturata',fatturata:true,log:[{d:'2026-03-01',ms:'Fatturata'}]},
+  {id:65,data:'2025-11-01',cli:"CINECITTA' WORLD SPA (GF)",tipo:'RSID',val:15000,ricavo:11050,ms:'Fatturata',fatturata:true,log:[{d:'2026-03-01',ms:'Fatturata'}]},
+  {id:66,data:'2025-11-01',cli:"CINECITTA' WORLD SPA (GF)",tipo:'Cert Prev',val:20000,ricavo:5000,ms:'Fatturata',fatturata:true,log:[{d:'2026-04-01',ms:'Fatturata'}]},
+  {id:71,data:'2025-11-01',cli:'MAF CONSULTING (GF)',tipo:'Patent Box esterno',val:70000,ricavo:72680,ms:'Fatturata',fatturata:true,log:[{d:'2026-02-01',ms:'Fatturata'}]},
+  {id:72,data:'2025-11-01',cli:'BORELLI x MAF (GF)',tipo:'Cert Prev',val:17500,ricavo:35000,ms:'Fatturata',fatturata:true,log:[{d:'2026-04-01',ms:'Fatturata'}]},
+  {id:73,data:'2025-11-01',cli:'BATTIONI LOGISTICA (GF)',tipo:'R&S',val:25072,ricavo:25072,ms:'Fatturata',fatturata:true,log:[{d:'2026-01-01',ms:'Fatturata'}]},
+  {id:74,data:'2025-11-01',cli:'BATTIONI LOGISTICA (GF)',tipo:'RSID',val:14726,ricavo:14726,ms:'Fatturata',fatturata:true,log:[{d:'2026-01-01',ms:'Fatturata'}]},
+  {id:75,data:'2025-11-01',cli:'BATTIONI LOGISTICA (GF)',tipo:'Formazione 4.0',val:13968,ricavo:13968,ms:'Fatturata',fatturata:true,log:[{d:'2026-01-01',ms:'Fatturata'}]},
+  {id:76,data:'2025-11-01',cli:'BATTIONI LOGISTICA (GF)',tipo:'Patent Box esterno',val:51000,ricavo:52206,ms:'Fatturata',fatturata:true,log:[{d:'2026-02-01',ms:'Fatturata'}]},
+  {id:77,data:'2025-11-01',cli:'BORELLI x Battioni (GF)',tipo:'Cert Prev',val:17500,ricavo:35000,ms:'Fatturata',fatturata:true,log:[{d:'2026-04-01',ms:'Fatturata'}]},
+  {id:81,data:'2026-01-01',cli:'RESINE ITALIANE (GF)',tipo:'Patent Box esterno',val:75000,ricavo:66548,ms:'Fatturata',fatturata:true,log:[{d:'2026-02-01',ms:'Fatturata'}]},
+  {id:82,data:'2026-01-01',cli:'SMILENET (GF)',tipo:'RSID',val:30000,ricavo:10637,ms:'Fatturata',fatturata:true,log:[{d:'2026-02-01',ms:'Fatturata'}]},
+  {id:84,data:'2026-01-01',cli:'ZIGOTTO (Lugoboni)',tipo:'Formazione 4.0',val:19000,ricavo:19084,ms:'Fatturata',fatturata:true,log:[{d:'2026-04-01',ms:'Fatturata'}]},
+  {id:85,data:'2026-01-01',cli:'ZIGOTTO (Lugoboni)',tipo:'RSID',val:18400,ricavo:18353,ms:'Fatturata',fatturata:true,log:[{d:'2026-04-01',ms:'Fatturata'}]},
+  {id:86,data:'2026-01-01',cli:'ZIGOTTO (Lugoboni)',tipo:'Patent Box interno',val:36000,ricavo:35967,ms:'Fatturata',fatturata:true,log:[{d:'2026-04-01',ms:'Fatturata'}]},
+  {id:92,data:'2026-01-01',cli:'SIE SRL (GF)',tipo:'RSID',val:2500,ricavo:2020,ms:'Fatturata',fatturata:true,log:[{d:'2026-01-01',ms:'Fatturata'}]},
+  {id:93,data:'2026-01-01',cli:'SERTRA SRL (GF)',tipo:'RSID',val:6000,ricavo:5158,ms:'Fatturata',fatturata:true,log:[{d:'2026-04-01',ms:'Fatturata'}]},
+  {id:94,data:'2026-02-01',cli:'MARK (GF)',tipo:'RSID',val:500,ricavo:500,ms:'Fatturata',fatturata:true,log:[{d:'2026-02-01',ms:'Fatturata'}]},
+  {id:95,data:'2026-02-01',cli:'CASTAGNA ANTINC (GF)',tipo:'RSID',val:3000,ricavo:7540,ms:'Fatturata',fatturata:true,log:[{d:'2026-04-01',ms:'Fatturata'}]},
+  {id:96,data:'2026-02-01',cli:'RESINE ITALIANE (GF)',tipo:'RSID',val:3000,ricavo:2723,ms:'Fatturata',fatturata:true,log:[{d:'2026-02-01',ms:'Fatturata'}]},
+  {id:101,data:'2026-02-01',cli:'INFOGESTWEB (Lugoboni)',tipo:'RSID',val:1000,ricavo:1000,ms:'Fatturata',fatturata:true,log:[{d:'2026-02-01',ms:'Fatturata'}]},
+  {id:105,data:'2026-04-01',cli:"CINECITTA' WORLD SPA (GF)",tipo:'Formazione 4.0',val:12393,ricavo:12393,ms:'Fatturata',fatturata:true,log:[{d:'2026-04-01',ms:'Fatturata'}]},
+];
+
+let primanota=[
+  {data:'2026-05-18',ctrl:'MAGIS ENERGIA SPA',desc:'Cod Fornitura Uff Lepanto',cat:'Software/Utilities',tipo:'uscita',imp:1071},
+  {data:'2026-05-06',ctrl:'AGENZIA DELLE ENTRATE',desc:'Rata 18/24 rateizzazione INPS',cat:'Tasse/Contributi',tipo:'uscita',imp:1740},
+  {data:'2026-05-05',ctrl:'STUDIO AREA LABOR SRL',desc:'Servizio uso uffici Maggio 2026',cat:'Canoni/Affitti',tipo:'entrata',imp:1525},
+  {data:'2026-05-04',ctrl:'AMERICAN EXPRESS',desc:'Estratto conto maggio',cat:'Fornitori/Professionisti',tipo:'uscita',imp:4042},
+  {data:'2026-05-04',ctrl:'GRENKE ITALIA SPA',desc:'Rata 26/60',cat:'Rate finanziamenti',tipo:'uscita',imp:2492},
+  {data:'2026-04-30',ctrl:"CINECITTA' WORLD SPA",desc:'R&S 2019 - 1° acconto',cat:'Onorario cliente',tipo:'entrata',imp:36293},
+  {data:'2026-04-30',ctrl:'SG INNOVA SRL',desc:'Acconto Videobrochure MOK',cat:'Fornitori/Professionisti',tipo:'uscita',imp:18476},
+  {data:'2026-04-30',ctrl:"CINECITTA' WORLD SPA",desc:'Cert Prev 2019 - Prof 29',cat:'Onorario cliente',tipo:'entrata',imp:6100},
+  {data:'2026-04-24',ctrl:'GIANFRANCO VALENTINI',desc:'Acconto rimborso Km amm.re',cat:'Personale',tipo:'uscita',imp:4000},
+  {data:'2026-04-23',ctrl:'SIMEM SPA',desc:'Canone Aprile 2026',cat:'Canoni/Affitti',tipo:'uscita',imp:3667},
+  {data:'2026-04-21',ctrl:'SMILENET SRL',desc:'RSID 2025 - Prof 15',cat:'Onorario cliente',tipo:'entrata',imp:11679},
+  {data:'2026-04-21',ctrl:'BATTIONI LOGISTICA SRL',desc:'R&S 2019 - 4° acconto',cat:'Onorario cliente',tipo:'entrata',imp:4564},
+  {data:'2026-04-20',ctrl:"CINECITTA' WORLD SPA",desc:'F4.0 20/21/22 - Prof 21',cat:'Onorario cliente',tipo:'entrata',imp:15119},
+  {data:'2026-03-31',ctrl:'RESINE ITALIANE SRL',desc:'Cert Prev - saldo',cat:'Onorario cliente',tipo:'entrata',imp:36600},
+  {data:'2026-03-31',ctrl:'MAF CONSULTING SRL',desc:'RSID 20-24 - saldo',cat:'Onorario cliente',tipo:'entrata',imp:16862},
+  {data:'2026-03-01',ctrl:'BORELLI R&D SRL',desc:'Cert Prev - acconto',cat:'Onorario cliente',tipo:'entrata',imp:28060},
+  {data:'2026-02-15',ctrl:'BATTIONI LOGISTICA SRL',desc:'R&S + RSID + F4.0 saldo',cat:'Onorario cliente',tipo:'entrata',imp:36990},
+  {data:'2026-02-01',ctrl:'GRENKE ITALIA SPA',desc:'Rata 23/60',cat:'Rate finanziamenti',tipo:'uscita',imp:2468},
+  {data:'2026-02-01',ctrl:'BANCA IFIS SPA',desc:'Rata 8/60 - Porsche Macan',cat:'Rate finanziamenti',tipo:'uscita',imp:1185},
+  {data:'2026-01-15',ctrl:'RESINE ITALIANE SRL',desc:'R&S + RSID + Cert Prev',cat:'Onorario cliente',tipo:'entrata',imp:77647},
+  {data:'2026-01-10',ctrl:'GIANFRANCO VALENTINI',desc:'Compenso amm.re dicembre',cat:'Personale',tipo:'uscita',imp:7738},
+  {data:'2026-01-10',ctrl:'Stipendi dicembre 2025',desc:'Iodice+Passarin+Malachini+Ciurletti',cat:'Personale',tipo:'uscita',imp:7700},
+  {data:'2026-01-10',ctrl:'LEPANTO YACHTING',desc:'Canone gennaio 2026',cat:'Canoni/Affitti',tipo:'uscita',imp:8669},
+  {data:'2026-01-10',ctrl:'SIMEM SPA',desc:'Canone gennaio 2026',cat:'Canoni/Affitti',tipo:'uscita',imp:3668},
+];
+
+let ammortamenti=[
+  {desc:'Mobili e arredi (totale)',cat:'Mobili e arredi',quota:4989},
+  {desc:'Elaboratori (MacBook, iPad)',cat:'Elaboratori',quota:1835},
+  {desc:'Macchine elettroniche ufficio',cat:'Macchine elettroniche',quota:1274},
+  {desc:'Radiomobile (iPhone, Samsung Flip)',cat:'Radiomobile',quota:2135},
+  {desc:'Attrezzatura varia e minuta',cat:'Macchine elettroniche',quota:119},
+  {desc:'Impianti generici (Soundbar Bose)',cat:'Altro',quota:230},
+  {desc:'Altri beni materiali',cat:'Altro',quota:285},
+  {desc:'Software CRM',cat:'Software',quota:1566},
+  {desc:'Sviluppo software',cat:'Software',quota:252},
+  {desc:'Software Patent Box',cat:'Software',quota:640},
+  {desc:'Spese su beni terzi (ristrutturazioni)',cat:'Spese su beni terzi',quota:8078},
+];
+
+let editId=null,charts={};
+
+function fE(v){return'€ '+Math.round(v).toLocaleString('it-IT')}
+function fK(v){return v>=1000000?'€'+(v/1000000).toFixed(1)+'M':v>=1000?'€'+(v/1000).toFixed(0)+'K':'€'+Math.round(v)}
+function getPerc(tipo,ms){const p=PIPELINE[tipo];if(!p)return ms==='Fatturata'?1:0;const f=p.find(x=>x.n===ms);return f?f.p:0}
+function calcWIP(p){if(p.fatturata)return p.ricavo||p.val;return p.val*getPerc(p.tipo,p.ms)}
+
+function go(t){
+  document.querySelectorAll('.nb').forEach((b,i)=>b.classList.toggle('active',['dash','pratiche','wip','pn','amm'][i]===t));
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
+  document.getElementById('tab-'+t).classList.add('active');
+  if(t==='dash')renderDash();
+  if(t==='pratiche')renderPratiche();
+  if(t==='wip')renderWIP();
+  if(t==='pn')renderPN();
+  if(t==='amm')renderAmm();
+}
+function refresh(){const a=document.querySelector('.nb.active');if(a)go(['dash','pratiche','wip','pn','amm'][Array.from(document.querySelectorAll('.nb')).indexOf(a)])}
+
+function renderDash(){
+  const aperte=pratiche.filter(p=>!p.fatturata);
+  const wipTot=aperte.reduce((s,p)=>s+calcWIP(p),0);
+  const valAperte=aperte.reduce((s,p)=>s+p.val,0);
+  const fattTot=pratiche.filter(p=>p.fatturata).reduce((s,p)=>s+(p.ricavo||p.val),0);
+  document.getElementById('dash-kpi').innerHTML=`
+    <div class="mc"><div class="ml">Incassi 2026</div><div class="mv" style="color:var(--green)">${fK(499470)}</div><div class="mv-s">gen–mag</div></div>
+    <div class="mc"><div class="ml">Uscite 2026</div><div class="mv" style="color:var(--red)">${fK(582741)}</div><div class="mv-s">gen–mag</div></div>
+    <div class="mc"><div class="ml">Saldo netto</div><div class="mv" style="color:var(--red)">−${fK(83271)}</div><div class="mv-s">gen–mag</div></div>
+    <div class="mc"><div class="ml">WIP aperto</div><div class="mv" style="color:var(--blue)">${fK(wipTot)}</div><div class="mv-s">${aperte.length} pratiche</div></div>
+    <div class="mc"><div class="ml">Fatturato 2026</div><div class="mv" style="color:var(--green)">${fK(fattTot)}</div><div class="mv-s">${pratiche.filter(p=>p.fatturata).length} pratiche</div></div>
+    <div class="mc"><div class="ml">Potenziale</div><div class="mv">${fK(valAperte)}</div><div class="mv-s">pratiche aperte</div></div>
+  `;
+  const cats=[
+    {l:'Fornitori/Prof.',v:347660,c:'#60a5fa'},{l:'Tasse/Contributi',v:68168,c:'#a78bfa'},
+    {l:'Canoni/Affitti',v:49345,c:'#4ade80'},{l:'Personale',v:33241,c:'#f59e0b'},
+    {l:'Rate finanz.',v:25663,c:'#94a3b8'},{l:'Consulenze',v:15567,c:'#f87171'},
+    {l:'Software',v:7976,c:'#f97316'},{l:'Auto/Carb.',v:8344,c:'#64748b'}
+  ];
+  const maxC=347660;
+  document.getElementById('dash-cats').innerHTML=cats.map(x=>`
+    <div class="row"><span style="color:var(--text3);min-width:90px">${x.l}</span><div class="bar-bg"><div class="bar-f" style="width:${Math.round(x.v/maxC*100)}%;background:${x.c}"></div></div><span style="font-weight:500;color:var(--text);white-space:nowrap">${fK(x.v)}</span></div>
+  `).join('');
+  const cli=[
+    {n:'Resine Italiane SRL',v:147917},{n:'Battioni Logistica SRL',v:58444},
+    {n:"Cinecittà World SPA",v:57513},{n:'MAF Consulting SRL',v:51518},
+    {n:'Elettrone SRL',v:31421},{n:'Borelli R&D SRL',v:28060},{n:'BTM SRL',v:26676}
+  ];
+  const maxCl=147917;
+  document.getElementById('dash-clienti').innerHTML=cli.map(x=>`
+    <div class="row"><span style="color:var(--text3);min-width:110px;font-size:10px">${x.n}</span><div class="bar-bg"><div class="bar-f" style="width:${Math.round(x.v/maxCl*100)}%;background:#60a5fa"></div></div><span style="font-weight:500;color:var(--text);white-space:nowrap">${fK(x.v)}</span></div>
+  `).join('');
+  if(charts['m'])charts['m'].destroy();
+  charts['m']=new Chart(document.getElementById('c-mensile'),{
+    type:'bar',
+    data:{labels:['Gen','Feb','Mar','Apr','Mag'],datasets:[
+      {label:'Incassi',data:[190215,55704,136958,111363,5231],backgroundColor:'#16a34a',borderWidth:0,borderRadius:3},
+      {label:'Uscite',data:[126488,147823,157957,136262,14041],backgroundColor:'#b91c1c',borderWidth:0,borderRadius:3}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{y:{ticks:{callback:v=>'€'+(v/1000).toFixed(0)+'K',font:{size:9},color:'#666'},grid:{color:'#1a1a1a'}},
+        x:{ticks:{font:{size:10},color:'#666'},grid:{display:false}},
+        ...(true&&{y:{ticks:{color:'#666',callback:v=>'€'+(v/1000).toFixed(0)+'K',font:{size:9}},grid:{color:'#222'}}})
+      }}
+  });
+}
+
+function renderPratiche(){
+  const fStato=document.getElementById('fil-stato').value;
+  const fTipo=document.getElementById('fil-tipo').value;
+  let lista=pratiche;
+  if(fStato==='aperte') lista=lista.filter(p=>!p.fatturata);
+  if(fStato==='fatturate') lista=lista.filter(p=>p.fatturata);
+  if(fTipo) lista=lista.filter(p=>p.tipo===fTipo);
+  lista=[...lista].sort((a,b)=>b.id-a.id);
+  document.getElementById('pratiche-body').innerHTML=lista.map(p=>{
+    const perc=p.fatturata?1:getPerc(p.tipo,p.ms);
+    const wip=calcWIP(p);
+    const col=perc>=1?'#22c55e':perc>=.7?'#a78bfa':perc>=.3?'#f59e0b':'#60a5fa';
+    const statoBadge=p.fatturata
+      ?`<span class="badge" style="background:#052e16;color:#4ade80">Fatturata</span>`
+      :`<span style="font-size:10px;color:var(--text3)">${p.ms}</span>`;
+    return`<tr class="hr" onclick="openEdit(${p.id})">
+      <td style="color:var(--text3)">#${p.id}</td>
+      <td><div style="font-weight:500;font-size:11px;color:var(--text)">${p.cli}</div></td>
+      <td><span class="badge" style="${TBADGE[p.tipo]||''}">${p.tipo}</span></td>
+      <td style="color:var(--text)">${fE(p.val)}</td>
+      <td>${statoBadge}</td>
+      <td style="font-weight:500;color:var(--blue)">${fE(wip)}</td>
+      <td><div class="bar-bg"><div class="bar-f" style="width:${Math.round(perc*100)}%;background:${col}"></div></div><div style="font-size:10px;text-align:right;color:var(--text3)">${Math.round(perc*100)}%</div></td>
+      <td><button class="btn" style="font-size:10px;padding:3px 8px" onclick="event.stopPropagation();openEdit(${p.id})"><i class="ti ti-edit" aria-hidden="true"></i></button></td>
+    </tr>`;
+  }).join('');
+}
+
+function renderWIP(){
+  const anno=parseInt(document.getElementById('anno-sel').value);
+  document.getElementById('wip-head').innerHTML='<tr><th>Cliente / Bando</th>'+MESI.map(m=>`<th style="text-align:right;min-width:52px">${m}</th>`).join('')+'<th style="text-align:right">Tot.</th></tr>';
+  let totM=new Array(12).fill(0);
+  const rows=pratiche.map(p=>{
+    let mesi=new Array(12).fill(0);let pP=0;
+    p.log.forEach(e=>{
+      const d=new Date(e.d);if(d.getFullYear()!==anno)return;
+      const m=d.getMonth();const perc=p.fatturata&&e.ms==='Fatturata'?1:getPerc(p.tipo,e.ms);
+      const delta=perc-pP;if(delta>0)mesi[m]+=p.val*delta;
+      pP=Math.max(pP,perc);
+    });
+    const tot=mesi.reduce((s,v)=>s+v,0);
+    mesi.forEach((v,i)=>totM[i]+=v);
+    if(tot===0)return'';
+    return`<tr><td><div style="font-weight:500;font-size:11px;color:var(--text)">${p.cli}</div><div style="font-size:10px;color:var(--text3)">${p.tipo}</div></td>${mesi.map(v=>`<td style="text-align:right">${v>0?`<span style="color:var(--green);font-weight:500;font-size:11px">${fE(v)}</span>`:'<span style="color:var(--text3)">—</span>'}</td>`).join('')}<td style="text-align:right;font-weight:500;font-size:11px;color:var(--green)">${fE(tot)}</td></tr>`;
+  }).join('');
+  document.getElementById('wip-body').innerHTML=rows+`<tr style="border-top:1px solid var(--border2)"><td style="font-weight:500;font-size:11px;color:var(--text)">Totale mese</td>${totM.map(v=>`<td style="text-align:right;font-weight:500;font-size:11px;color:var(--green)">${v>0?fE(v):'—'}</td>`).join('')}<td style="text-align:right;font-weight:500;font-size:11px;color:var(--green)">${fE(totM.reduce((s,v)=>s+v,0))}</td></tr>`;
+}
+
+function renderPN(){
+  const entTot=primanota.filter(x=>x.tipo==='entrata').reduce((s,x)=>s+x.imp,0);
+  const usTot=primanota.filter(x=>x.tipo==='uscita').reduce((s,x)=>s+x.imp,0);
+  document.getElementById('pn-kpi').innerHTML=`
+    <div class="mc"><div class="ml">Entrate registrate</div><div class="mv" style="color:var(--green)">${fK(entTot)}</div></div>
+    <div class="mc"><div class="ml">Uscite registrate</div><div class="mv" style="color:var(--red)">${fK(usTot)}</div></div>
+    <div class="mc"><div class="ml">Saldo</div><div class="mv" style="color:${entTot-usTot>=0?'var(--green)':'var(--red)'}">${entTot-usTot>=0?'+':'−'}${fK(Math.abs(entTot-usTot))}</div></div>
+    <div class="mc"><div class="ml">Movimenti</div><div class="mv">${primanota.length}</div></div>
+  `;
+  const sorted=[...primanota].sort((a,b)=>b.data.localeCompare(a.data));
+  document.getElementById('pn-body').innerHTML=sorted.map(r=>`<tr>
+    <td style="color:var(--text3);white-space:nowrap;font-size:10px">${r.data}</td>
+    <td style="font-size:11px;color:var(--text);max-width:140px">${r.ctrl}</td>
+    <td style="font-size:10px;color:var(--text3);max-width:160px">${r.desc}</td>
+    <td><span class="badge" style="background:var(--bg4);color:var(--text3)">${r.cat}</span></td>
+    <td style="text-align:right;font-weight:500"><span class="${r.tipo==='entrata'?'pill-e':'pill-u'}">${r.tipo==='entrata'?'+':'−'}${fE(r.imp)}</span></td>
+  </tr>`).join('');
+}
+
+function renderAmm(){
+  const totQ=ammortamenti.reduce((s,a)=>s+a.quota,0);
+  const cats={};ammortamenti.forEach(a=>{cats[a.cat]=(cats[a.cat]||0)+a.quota});
+  document.getElementById('amm-kpi').innerHTML=`
+    <div class="mc"><div class="ml">Quota tot. 2025</div><div class="mv" style="color:var(--red)">${fE(totQ)}</div></div>
+    <div class="mc"><div class="ml">Categorie</div><div class="mv">${Object.keys(cats).length}</div></div>
+    <div class="mc"><div class="ml">Cespiti</div><div class="mv">${ammortamenti.length}</div></div>
+    <div class="mc"><div class="ml">Fonte</div><div class="mv" style="font-size:12px;color:var(--text3)">Easythema 12/25</div></div>
+  `;
+  document.getElementById('amm-body').innerHTML=ammortamenti.map(a=>`<tr>
+    <td style="font-weight:500;font-size:11px;color:var(--text)">${a.desc}</td>
+    <td><span class="badge" style="background:var(--bg4);color:var(--text3)">${a.cat}</span></td>
+    <td style="text-align:right;font-weight:500;color:var(--red)">${fE(a.quota)}</td>
+  </tr>`).join('');
+  const catCol={'Mobili e arredi':'#60a5fa','Elaboratori':'#a78bfa','Macchine elettroniche':'#4ade80','Radiomobile':'#f59e0b','Software':'#f97316','Spese su beni terzi':'#94a3b8','Altro':'#64748b'};
+  const maxV=Math.max(...Object.values(cats));
+  document.getElementById('amm-bars').innerHTML=Object.entries(cats).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`
+    <div class="row"><span style="color:var(--text3);min-width:140px;font-size:10px">${k}</span><div class="bar-bg"><div class="bar-f" style="width:${Math.round(v/maxV*100)}%;background:${catCol[k]||'#64748b'}"></div></div><span style="font-weight:500;color:var(--text);white-space:nowrap">${fE(v)}</span></div>
+  `).join('');
+}
+
+function openPraticaModal(){
+  editId=null;
+  document.getElementById('mp-title').textContent='Nuova pratica';
+  document.getElementById('mp-del').style.display='none';
+  document.getElementById('mp-id').value='';
+  document.getElementById('mp-data').value=new Date().toISOString().split('T')[0];
+  document.getElementById('mp-cli').value='';document.getElementById('mp-val').value='';
+  document.getElementById('mp-tipo').value='Simest';aggMs();
+  document.getElementById('m-pratica').classList.add('open');
+}
+function openEdit(id){
+  const p=pratiche.find(x=>x.id===id);if(!p)return;
+  editId=id;
+  document.getElementById('mp-title').textContent='Modifica pratica #'+id;
+  document.getElementById('mp-del').style.display='inline-flex';
+  document.getElementById('mp-id').value=p.id;
+  document.getElementById('mp-data').value=p.data;
+  document.getElementById('mp-cli').value=p.cli;
+  document.getElementById('mp-val').value=p.val;
+  document.getElementById('mp-tipo').value=p.tipo;
+  aggMs(p.ms);
+  document.getElementById('m-pratica').classList.add('open');
+}
+function aggMs(cur){
+  const tipo=document.getElementById('mp-tipo').value;
+  const steps=PIPELINE[tipo]||[];
+  const sel=document.getElementById('mp-ms');
+  sel.innerHTML=steps.map(s=>`<option value="${s.n}" ${s.n===cur?'selected':''}>${s.n} (${Math.round(s.p*100)}%)</option>`).join('');
+  renderMsPrev();sel.onchange=renderMsPrev;
+}
+function renderMsPrev(){
+  const tipo=document.getElementById('mp-tipo').value;
+  const cur=document.getElementById('mp-ms').value;
+  const steps=PIPELINE[tipo]||[];
+  const idx=steps.findIndex(s=>s.n===cur);
+  document.getElementById('ms-prev').innerHTML=steps.map((s,i)=>`
+    <div class="ms-step">
+      <div class="ms-dot" style="background:${i<idx?'#22c55e':i===idx?'#60a5fa':'#333'}"></div>
+      <div style="flex:1;font-size:10px;color:${i<=idx?'var(--text)':'var(--text3)'}">${s.n}</div>
+      <div style="font-size:10px;font-weight:500;color:${i<idx?'var(--green)':i===idx?'var(--blue)':'var(--text3)'}">${Math.round(s.p*100)}%</div>
+    </div>`).join('');
+}
+function salvaPratica(){
+  const id=parseInt(document.getElementById('mp-id').value)||Date.now();
+  const cli=document.getElementById('mp-cli').value.trim();
+  const tipo=document.getElementById('mp-tipo').value;
+  const val=parseFloat(document.getElementById('mp-val').value)||0;
+  const ms=document.getElementById('mp-ms').value;
+  const data=document.getElementById('mp-data').value;
+  if(!cli){alert('Inserisci il nome cliente.');return;}
+  const fatturata=ms==='Fatturata';
+  if(editId!==null){
+    const idx=pratiche.findIndex(x=>x.id===editId);
+    const old=pratiche[idx];
+    const pN=fatturata?1:getPerc(tipo,ms);const pV=old.fatturata?1:getPerc(old.tipo,old.ms);
+    pratiche[idx]={...old,cli,tipo,val,ms,fatturata};
+    if(ms!==old.ms){
+      if(pN>pV)pratiche[idx].log=[...(old.log||[]),{d:new Date().toISOString().split('T')[0],ms}];
+      else if(pN<pV&&confirm('Tornare indietro? Resettare il log?'))pratiche[idx].log=[{d:data,ms}];
+    }
+  } else {
+    pratiche.push({id,data,cli,tipo,val,ms,fatturata,log:[{d:data,ms}]});
+  }
+  closeM('m-pratica');renderPratiche();
+}
+function delPratica(){
+  if(!confirm('Eliminare la pratica?'))return;
+  pratiche=pratiche.filter(x=>x.id!==editId);
+  closeM('m-pratica');renderPratiche();
+}
+function openPNModal(){
+  document.getElementById('pn-data').value=new Date().toISOString().split('T')[0];
+  document.getElementById('pn-ctrl').value='';document.getElementById('pn-desc').value='';document.getElementById('pn-imp').value='';
+  document.getElementById('m-pn').classList.add('open');
+}
+function savePN(){
+  const data=document.getElementById('pn-data').value;
+  const ctrl=document.getElementById('pn-ctrl').value.trim();
+  const desc=document.getElementById('pn-desc').value.trim();
+  const cat=document.getElementById('pn-cat').value;
+  const tipo=document.getElementById('pn-tipo').value;
+  const imp=parseFloat(document.getElementById('pn-imp').value)||0;
+  if(!ctrl||!imp){alert('Compila controparte e importo.');return;}
+  primanota.push({data,ctrl,desc,cat,tipo,imp});
+  closeM('m-pn');renderPN();
+}
+function openAmmModal(){
+  document.getElementById('amm-d').value='';document.getElementById('amm-v').value='';
+  document.getElementById('amm-a').value=new Date().getFullYear();
+  document.getElementById('m-amm').classList.add('open');
+}
+function saveAmm(){
+  const desc=document.getElementById('amm-d').value.trim();
+  const quota=parseFloat(document.getElementById('amm-v').value)||0;
+  const annoAcq=parseInt(document.getElementById('amm-a').value)||2025;
+  const cat=document.getElementById('amm-c').value;
+  if(!desc||!quota){alert('Compila descrizione e quota.');return;}
+  ammortamenti.push({desc,cat,quota,annoAcq});
+  closeM('m-amm');renderAmm();
+}
+function closeM(id){document.getElementById(id).classList.remove('open')}
+
+renderDash();
+</script>
